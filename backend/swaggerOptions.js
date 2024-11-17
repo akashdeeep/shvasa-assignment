@@ -70,7 +70,7 @@ const options = {
 			},
 		},
 	},
-	apis: ["./src/routes/*.ts"], // Path to the route files you want to document (adjust the path based on your project structure)
+	apis: ["./backend/src/routes/*.ts"], // Path to the route files you want to document (adjust the path based on your project structure)
 };
 
 const swaggerSpec = swaggerJsdoc(options);
