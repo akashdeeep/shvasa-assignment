@@ -1,0 +1,79 @@
+.calendar-table {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.calendar-header {
+	display: table-header-group;
+	background-color: #f0f0f0;
+}
+
+.calendar-day {
+	display: table-cell;
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #ddd;
+}
+
+.calendar-body {
+	display: table-row-group;
+}
+
+.calendar-column {
+	display: table-cell;
+	vertical-align: top;
+	border: 1px solid #ddd;
+}
+
+.calendar-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.time-slot {
+	width: 80px;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+}
+
+.day-cell {
+	width: 150px;
+	padding: 10px;
+	vertical-align: top;
+	position: relative;
+}
+
+.event-item {
+	position: absolute;
+	left: 0;
+	right: 0;
+	background-color: #e3f2fd;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.event-name {
+	font-weight: bold;
+}
+
+.event-tag {
+	font-size: 12px;
+	color: #555;
+}
+
+.add-event-button {
+	margin: 10px;
+	padding: 10px;
+	background-color: #6200ea;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.add-event-button:hover {
+	background-color: #3700b3;
+}

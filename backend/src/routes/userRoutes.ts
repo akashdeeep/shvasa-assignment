@@ -2,6 +2,8 @@ import express, { Request, Response, Router } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
+import authMiddleware from "../middleware/authMiddleware";
+import { AuthenticatedRequest } from "../middleware/authMiddleware";
 
 const userRouter: Router = express.Router();
 const JWT_SECRET: string = process.env.JWT_SECRET || "your_jwt_secret";
@@ -67,7 +69,6 @@ userRouter.post(
 	"/register",
 	async (req: Request, res: Response): Promise<void> => {
 		const { name, email, password } = req.body;
-		console.log("oerifnero");
 		console.log("email:", email);
 		try {
 			const existingUser = await User.findOne({ email });
@@ -88,7 +89,7 @@ userRouter.post(
 	}
 );
 
-	/**
+/**
  * @openapi
  * /login:
  *   post:
@@ -184,6 +185,24 @@ userRouter.post(
 		} catch (error) {
 			console.error("Error logging in:", error);
 			res.status(500).json({ message: "Error logging in", error });
+		}
+	}
+);
+
+userRouter.get(
+	"/getUser",
+	authMiddleware,
+	async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+		try {
+			const user = await User.findById(req.user?._id as string);
+			if (!user) {
+				res.status(400).json({ message: "User not found" });
+				return;
+			}
+			res.status(200).json({ user });
+		} catch (error) {
+			console.error("Error getting user:", error);
+			res.status(500).json({ message: "Error getting user", error });
 		}
 	}
 );
